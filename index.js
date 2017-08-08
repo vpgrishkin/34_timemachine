@@ -1,5 +1,6 @@
 (function () {
   var TIMEOUT_IN_SECS = 3 * 60;
+  var QUOTES_INTERVAL_IN_SECS = 30;
   var TEMPLATE = '<h1><span id="timer-minutes">00</span>:<span id="timer-seconds">00</span></h1>';
   var QUOTES = ['Любишь ты жизнь? Тогда не теряй времени; ибо время — ткань, из которой состоит жизнь.',
   'Каждое потерянное мгновение — потерянное дело, потерянная польза.',
@@ -41,10 +42,11 @@
   }
 
   function displayQuote() {
-    randomQuote = QUOTES[Math.floor(Math.random()*QUOTES.length)];
+    randomQuote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
     alert(randomQuote);
+    setTimeout(displayQuote, QUOTES_INTERVAL_IN_SECS * 1000);
   }
   
-  setInterval(displayQuote, TIMEOUT_IN_SECS * 1000);
-  setInterval(displayTimer, 300);
+  setInterval(displayTimer, 1000);
+  setTimeout(displayQuote, TIMEOUT_IN_SECS * 1000);
 }());
